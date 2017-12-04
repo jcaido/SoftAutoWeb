@@ -1,0 +1,25 @@
+security:
+    firewalls:
+        frontend:
+            pattern: ^/*
+            anonymous: ~
+            provider: usuarios
+            form_login:
+                login_path: usuario_login
+                check_path: usuario_login_check
+                default_target_path: /usuario/inicio/
+                always_use_default_target_path: true
+            logout:
+                path: usuario_logout
+                
+    access_control:
+        - { path: ^/SoftAutoWeb, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/*, roles: ROLE_USUARIO }
+        
+    providers:
+        usuarios:
+            entity: { class: AppBundle\Entity\Usuario, property: nombre }
+        
+    encoders:
+        AppBundle\Entity\Usuario: 'bcrypt'

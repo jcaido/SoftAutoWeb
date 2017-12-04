@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid altura fondo">
+        <div class="row altura">
+            <div class="col-xs-9 portada altura">
+                <h1 class="text-center textoPortada"> SoftAutoWeb</h1>    
+            </div>
+            <div class="col-xs-3 lateral altura">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="compraventa">
+                            <h4>Compra-Venta de Vehículos</h4>
+                            <a href="{{ path('compraVenta') }}"><img class="borde_imagen" src="{{ asset('/images/compraventa.jpg') }}" width="70" height="70"></a>
+                        </div>    
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="taller">
+                            <h4>Taller</h4>
+                            <a href="{{ path('taller') }}"><img class="borde_imagen" src="{{ asset('/images/taller.jpg') }}" width="70" height="70"></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+{% endblock %}

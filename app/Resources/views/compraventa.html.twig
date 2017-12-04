@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid altura fondo">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>COMPRAS</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="{{path('REBUTerceros')}}">REBU a terceros</a> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="{{ path('REBUAutoFacturas') }}">REBU autofactura</a>
+                    </div>
+                </div>                       
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="{{ path('ComprasRG') }}">Régimen general</a>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xs-12">
+                        <a href="{{ path('GastosFactura') }}">Gastos con Factura</a>
+                    </div>
+                </div>                     
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>VENTAS</h3>
+                    </div>
+                </div>
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 cuerpo_cv">
+                <div id="compra_venta"></div>
+            </div>    
+        </div>
+        <div class="r
+            <div class="col-xs-12">
+                <div id="grid"></div>
+            </div>
+        </div>   
+    </div>
+{% endblock %}
+
+

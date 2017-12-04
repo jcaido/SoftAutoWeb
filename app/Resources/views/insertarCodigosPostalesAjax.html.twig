@@ -1,0 +1,335 @@
+<form id="formcp" action="" method="POST" role="form" novalidate="novalidate">
+    {{form_start(formulario)}}
+    <div class="row">
+        
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="xs-col-12">
+                        <h5 class="Nuevo_cp"><strong>Nuevo Código Postal</strong></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{form_widget(formulario.cp)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{form_widget(formulario.localidad)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                         {{form_widget(formulario.provincia)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{form_widget(formulario.pais)}}
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="info">{{ mensaje }}</p>
+    {% endfor %}
+    <div class="row">
+        <div class="col-xs-2 botones_cp">
+            <input type=image src="/images/aceptar1.png" width="30" height="30">
+            {{form_widget(formulario._token)}}    
+        </div>
+        <div class="col-xs-2 botones_cp">
+            <div style="display:inline-block;">
+                <a id="salir_cp" href="#"><img src="/images/salir1.png" height="30" width="30"/></a>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ form_errors(formulario.localidad) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ form_errors(formulario.provincia) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ form_errors(formulario.pais) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type = "text/javascript">
+    //Colocar inline boton Salir
+    $("#codigosPostales_aceptar").parent().css("display", "inline-block");
+    
+    // enviar el formulario Codigos Postales via Ajax
+    $('#formcp').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: "{{ path('insertarCodigosPostalesAjax') }}",
+            data: $(this).serialize(),
+            success: function() {
+                $('#controlcp').empty();
+                if ($('#cuentasPersonales_personaFisica:checked').val() == 1) {
+                    $('#cuentasPersonales_nombre').removeAttr('readonly');
+                    $('#cuentasPersonales_primerApellido').removeAttr('readonly');
+                    $('#cuentasPersonales_segundoApellido').removeAttr('readonly');
+                    $('#cuentasPersonales_nifCif').removeAttr('readonly');
+                    $('#cuentasPersonales_email').removeAttr('readonly');
+                    $('#cuentasPersonales_direccion').removeAttr('readonly');
+                    $('#cuentasPersonales_cp').removeAttr('readonly');
+                    $('#cuentasPersonales_cliente').removeAttr('disabled');
+                    $('#cuentasPersonales_proveedor').removeAttr('disabled');
+                    $('#cuentasPersonales_rcdp').removeAttr('disabled');
+                    $('#cuentasPersonales_personaFisica').removeAttr('disabled');
+                    $('#cuentasPersonales_revccd').removeAttr('disabled');
+                    $('#cuentasPersonales_atdp').removeAttr('disabled');
+                    $('#cuentasPersonales_aecc').removeAttr('disabled');
+                    $('#cuentasPersonales_acdp').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpLlt').removeAttr('disabled');
+                    $('#cuentasPersonales_rdp').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpMm').removeAttr('disabled');
+                    $('#cuentasPersonales_rectccd').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpRs').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpVa').removeAttr('disabled');
+                    $('#cuentasPersonales_racc').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpCp').removeAttr('disabled');
+                    $('#cuentasPersonales_racd').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpEmail').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpFax').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRdp').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRcdp').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRacc').removeAttr('disabled');
+                    $('#cuentasPersonales_aceptar').removeAttr('disabled');
+                }else{
+                    $('#cuentasPersonales_denominacionSocial').removeAttr('readonly');
+                    $('#cuentasPersonales_nifCif').removeAttr('readonly');
+                    $('#cuentasPersonales_email').removeAttr('readonly');
+                    $('#cuentasPersonales_direccion').removeAttr('readonly');
+                    $('#cuentasPersonales_cp').removeAttr('readonly');
+                    $('#cuentasPersonales_cliente').removeAttr('disabled');
+                    $('#cuentasPersonales_proveedor').removeAttr('disabled');
+                    $('#cuentasPersonales_rcdp').removeAttr('disabled');
+                    $('#cuentasPersonales_personaFisica').removeAttr('disabled');
+                    $('#cuentasPersonales_revccd').removeAttr('disabled');
+                    $('#cuentasPersonales_atdp').removeAttr('disabled');
+                    $('#cuentasPersonales_aecc').removeAttr('disabled');
+                    $('#cuentasPersonales_acdp').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpLlt').removeAttr('disabled');
+                    $('#cuentasPersonales_rdp').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpMm').removeAttr('disabled');
+                    $('#cuentasPersonales_rectccd').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpRs').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpVa').removeAttr('disabled');
+                    $('#cuentasPersonales_racc').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpCp').removeAttr('disabled');
+                    $('#cuentasPersonales_racd').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpEmail').removeAttr('disabled');
+                    $('#cuentasPersonales_ccpFax').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRdp').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRcdp').removeAttr('disabled');
+                    $('#cuentasPersonales_fechaRacc').removeAttr('disabled');
+                    $('#cuentasPersonales_aceptar').removeAttr('disabled');
+                };
+                var cpostal = $('#cuentasPersonales_cp').val();
+                $.ajax({
+                    data: {'cpost': cpostal},
+                    url: "{{ path('buscarCP') }}",
+                    type: 'post',
+                    dataType: 'html',
+                    success: function(response){
+                        $('#cp').html(response);
+                        $('#codigosPostales').empty();
+                        //Insertar la tabla Codigos postales via Ajax
+                        $.ajax({
+                            type: 'get',
+                            url: "{{ path('grid_codigosPostales') }}",
+                            datatype: "html",
+                            success: function(response){
+                                $('#codigosPostales').html(response);
+                                $('#tabla_codigosPostales').DataTable({
+                                    paging: false,
+                                    scrollY: 178,
+                                    language: {
+                                        processing:     "Procesando...",
+                                        search: "Buscar:",
+                                        lengthMenu: "Mostrar _MENU_ registros",
+                                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                                        infoPostFix: "",
+                                        loadingRecords: "Cargando...",
+                                        zeroRecords: "No se encontraron resultados",
+                                        emptyTable: "Ningún dato disponible en esta tabla",
+                                        paginate: {
+                                            first: "Primero",
+                                            previous: "Anterior",
+                                            next: "Siguiente",
+                                            last: "Último"
+                                        },
+                                        aria: {
+                                            sortAscending: "Activar para ordenar la columna de manera ascendente",
+                                            sortDescending: "Activar para ordenar la columna de manera descendente"
+                                        }
+                                    }
+                                });
+                                $('#cuentasPersonales_nombre').focus();
+                            },
+                        });   
+                    },
+                });
+            },
+        });
+    });
+    
+    // tabular con la tecla intro
+    $('input[id^="codigosPostales"]').keydown(function(e){
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            $('#codigosPostales_localidad').attr('tabindex', 1);
+            $('#codigosPostales_provincia').attr('tabindex', 2);
+            $('#codigosPostales_pais').attr('tabindex', 3);
+            cb = parseInt($(this).attr('tabindex'));
+            if ($(':input[tabindex=\'' + (cb + 1) + '\']') != null) {
+                $(':input[tabindex=\'' + (cb + 1) + '\']').focus();
+                $(':input[tabindex=\'' + (cb + 1) + '\']').select();    
+            }; 
+        };
+    });
+    
+    // Botón salir
+    $('#salir_cp').click(function(e){
+        e.preventDefault();
+        if ($('#cuentasPersonales_personaFisica:checked').val() == 1) {
+            $('#cuentasPersonales_nombre').removeAttr('readonly');
+            $('#cuentasPersonales_primerApellido').removeAttr('readonly');
+            $('#cuentasPersonales_segundoApellido').removeAttr('readonly');
+            $('#cuentasPersonales_nifCif').removeAttr('readonly');
+            $('#cuentasPersonales_email').removeAttr('readonly');
+            $('#cuentasPersonales_direccion').removeAttr('readonly');
+            $('#cuentasPersonales_cp').removeAttr('readonly');
+            $('#cuentasPersonales_cliente').removeAttr('disabled');
+            $('#cuentasPersonales_proveedor').removeAttr('disabled');
+            $('#cuentasPersonales_rcdp').removeAttr('disabled');
+            if ($('#cuentasPersonales_rcdp:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRcdp').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_personaFisica').removeAttr('disabled');
+            $('#cuentasPersonales_revccd').removeAttr('disabled');
+            $('#cuentasPersonales_atdp').removeAttr('disabled');
+            $('#cuentasPersonales_aecc').removeAttr('disabled');
+            $('#cuentasPersonales_acdp').removeAttr('disabled');
+            $('#cuentasPersonales_ccpLlt').removeAttr('disabled');
+            $('#cuentasPersonales_rdp').removeAttr('disabled');
+            if ($('#cuentasPersonales_rdp:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRdp').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_ccpMm').removeAttr('disabled');
+            $('#cuentasPersonales_rectccd').removeAttr('disabled');
+            $('#cuentasPersonales_ccpRs').removeAttr('disabled');
+            $('#cuentasPersonales_ccpVa').removeAttr('disabled');
+            $('#cuentasPersonales_racc').removeAttr('disabled');
+            if ($('#cuentasPersonales_racc:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRacc').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_ccpCp').removeAttr('disabled');
+            $('#cuentasPersonales_racd').removeAttr('disabled');
+            $('#cuentasPersonales_ccpEmail').removeAttr('disabled');
+            $('#cuentasPersonales_ccpFax').removeAttr('disabled');
+            $('#cuentasPersonales_aceptar').removeAttr('disabled');
+        }else{
+            $('#cuentasPersonales_denominacionSocial').removeAttr('readonly');
+            $('#cuentasPersonales_nifCif').removeAttr('readonly');
+            $('#cuentasPersonales_email').removeAttr('readonly');
+            $('#cuentasPersonales_direccion').removeAttr('readonly');
+            $('#cuentasPersonales_cp').removeAttr('readonly');
+            $('#cuentasPersonales_cliente').removeAttr('disabled');
+            $('#cuentasPersonales_proveedor').removeAttr('disabled');
+            $('#cuentasPersonales_rcdp').removeAttr('disabled');
+            if ($('#cuentasPersonales_rcdp:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRcdp').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_personaFisica').removeAttr('disabled');
+            $('#cuentasPersonales_revccd').removeAttr('disabled');
+            $('#cuentasPersonales_atdp').removeAttr('disabled');
+            $('#cuentasPersonales_aecc').removeAttr('disabled');
+            $('#cuentasPersonales_acdp').removeAttr('disabled');
+            $('#cuentasPersonales_ccpLlt').removeAttr('disabled');
+            $('#cuentasPersonales_rdp').removeAttr('disabled');
+            if ($('#cuentasPersonales_rdp:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRdp').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_ccpMm').removeAttr('disabled');
+            $('#cuentasPersonales_rectccd').removeAttr('disabled');
+            $('#cuentasPersonales_ccpRs').removeAttr('disabled');
+            $('#cuentasPersonales_ccpVa').removeAttr('disabled');
+            $('#cuentasPersonales_racc').removeAttr('disabled');
+            if ($('#cuentasPersonales_racc:checked').val() == 1) {
+                $('#cuentasPersonales_fechaRacc').removeAttr('disabled');
+            }
+            $('#cuentasPersonales_ccpCp').removeAttr('disabled');
+            $('#cuentasPersonales_racd').removeAttr('disabled');
+            $('#cuentasPersonales_ccpEmail').removeAttr('disabled');
+            $('#cuentasPersonales_ccpFax').removeAttr('disabled'); 
+            $('#cuentasPersonales_aceptar').removeAttr('disabled');
+        };
+        $('#codigosPostales').html('<div class="imagen_ajax2"><img src="/images/loading.gif"/></div>');
+        $.ajax({
+            type: 'get',
+            url: "{{path('grid_codigosPostales')}}",
+            datatype: "html",
+            success: function(response){
+                $('#codigosPostales').html(response);
+                $('#tabla_codigosPostales').DataTable({
+                    paging: false,
+                    scrollY: 178,
+                    language: {
+                        processing:     "Procesando...",
+                        search: "Buscar:",
+                        lengthMenu: "Mostrar _MENU_ registros",
+                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                        infoPostFix: "",
+                        loadingRecords: "Cargando...",
+                        zeroRecords: "No se encontraron resultados",
+                        emptyTable: "Ningún dato disponible en esta tabla",
+                        paginate: {
+                            first: "Primero",
+                            previous: "Anterior",
+                            next: "Siguiente",
+                            last: "Último"
+                        },
+                        aria: {
+                            sortAscending: "Activar para ordenar la columna de manera ascendente",
+                            sortDescending: "Activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+                $('#cuentasPersonales_cp').val('');
+                $('#cp').empty();
+                $('#cuentasPersonales_cp').focus();
+            },
+        });
+    })
+</script>
+      
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

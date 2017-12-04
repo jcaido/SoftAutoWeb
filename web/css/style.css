@@ -1,0 +1,90 @@
+html,body{margin:0px; height:100%;}
+.container-fluid{padding-right: 30px;}
+.fondo{background-color: #d6f3ec;}
+.portada{background-image: url("../images/mecanico.gif"); background-color: #8ee0cb; height: 100%; display: flex; justify-content: center; align-content: center; flex-direction: column; border-radius: 4px 31px 4px 52px; border: 23px ridge #2776a1;}
+.altura{height: 100%;}
+.login{height: 50%; background-color: #dbddd4;border-radius: 10px 10px 10px 10px;margin-left:1px}
+.compraventa{height: 25%}
+.taller{height: 25%}
+.textoPortada{font-family: Segoe Print; color: #b30f5a; font-size: 120px; font-weight: bold; text-shadow: black 12px 5px 7px;}
+.lateral{background-color: #d6f3ec; padding-top: 25px;}
+.margin_input{margin-bottom: 30px}
+.margin_titulo{margin-bottom: 15px}
+.margin-submit{padding-top:30px}
+.acceso_denegado{color: red; padding-left: 30px; padding-top: 30px;}
+.credenciales{color: red; padding-left: 60px;}
+.borde_imagen{border: gray 3px solid;border-radius: 4px 4px 4px 4px;}
+#compraventa, #taller{background-color: #dbddd4; text-align: center; border-radius: 10px 10px 10px 10px; padding-top: 10px; padding-bottom: 20px;}
+#taller{margin-top: 10px;}
+#compraventa h4, #taller h4{padding-bottom: 10px;}
+.cuerpo_cv{padding-top: 70px;}
+.encabezado{background-color: #ED9A50; text-align: center;}
+.margenAjax{margin-bottom: 5px;}
+.fuente{font-size: 0.75em;} 
+.fuente1{font-size: 0.85em;}
+fieldset.scheduler-border{border: 2px solid #D0C4BE !important; padding: 0 1.4em 1.4em 1.4em !important; margin: 0 0 1.3em 1em !important; -webkit-box-shadow:  0px 0px 0px 0px #000; box-shadow:  0px 0px 0px 0px #000;}
+legend.scheduler-border.dg{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 15%; padding-left: 10px;}
+legend.scheduler-border.lopd{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 10%; padding-left: 10px;}
+legend.scheduler-border.lsi{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 8%; padding-left: 10px;}
+legend.scheduler-border.Rdp{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 68%; padding-left: 10px;}
+legend.scheduler-border.Radp{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 90%; padding-left: 10px;}
+legend.scheduler-border.Ccp{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 75%; padding-left: 10px;}
+legend.scheduler-border.Racc{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 97%; padding-left: 10px;}
+legend.scheduler-border.Dt{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 43%; padding-left: 10px;}
+legend.scheduler-border.Cp{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 35%; padding-left: 10px;}
+legend.scheduler-border.Ancp{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 60%; padding-left: 10px; color: #736a6a;}
+legend.scheduler-border.dfREBUterceros{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 25%; padding-left: 10px;}
+legend.scheduler-border.dfGastosFacturas{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 25%; padding-left: 10px;}
+legend.scheduler-border.dfREBUAutoFacturas{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 25%; padding-left: 10px;}
+legend a{padding-left: 5px;}
+legend.scheduler-border.Vehiculos, legend.scheduler-border.Gastos{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 18%; padding-left: 10px;}
+#cuentasPersonales_nombre, #cuentasPersonales_primerApellido, #cuentasPersonales_denominacionSocial, #cuentasPersonales_nifCif, #cuentasPersonales_direccion, #cuentasPersonales_cp{margin-bottom: 2px;}
+#cp{font-size: 1em; color: #B40404; text-align: center;}
+#cpers{font-size: 1em; color: #B40404; padding-top: 17px; border: 1px;}
+.bordeatdp{border-bottom: 1px groove; margin-bottom: 9px;}
+#cuentasPersonales_nombre, #cuentasPersonales_denominacionSocial, #cuentasPersonales_direccion{margin-top:10px;}
+label[for*="cuentasPersonales"]{font-size: 1.2em; color:#736A6A; padding-right: 5px; padding-left: 5px;}
+label[for="cuentasPersonales_rdp"], label[for="cuentasPersonales_fechaRdp"], label[for="cuentasPersonales_rectccd"], label[for="cuentasPersonales_rcdp"], label[for="cuentasPersonales_fechaRcdp"], label[for="cuentasPersonales_revccd"]{font-size: 1em; padding-right: 10px;}
+label[for="cuentasPersonales_ccpLlt"], label[for="cuentasPersonales_ccpMm"], label[for="cuentasPersonales_ccpRs"], label[for="cuentasPersonales_ccpVa"], label[for="cuentasPersonales_ccpCp"], label[for="cuentasPersonales_ccpEmail"], label[for="cuentasPersonales_ccpFax"]{font-size: 1em; padding-right: 10px;}
+label[for="cuentasPersonales_racc"], label[for="cuentasPersonales_fechaRacc"], label[for="cuentasPersonales_racd"]{font-size: 1em; padding-right: 10px;}
+.bajar{padding-top: 40px;}
+.datosTelefonicos_min{height: 200px; overflow: auto;}
+#grid1, #grid2{height: 287px; font-size: 0.9em; margin-top: 10px;}
+#grid_facturasREBUTerceros, #gid_facturasComprasRG{overflow: auto;}
+.datosTelefonicos_min img{margin-top:50px; margin-left: 130px;}
+.Vehiculos_min, .Gastos_min{height: 330px; overflow: auto;}
+.Vehiculos_min img{margin-left:140px;}
+label[for="datosTelefonicos_radiob"]{font-size: 1.2em; color:#736A6A; padding-left: 20px; padding-top: 5px;}
+.CodigosPostales_min{min-height: 278px;}
+.mensaje_flash{min-height: 85px; font-size: 14px; color: #A50202; padding-top:10px; padding-left: 30px;}
+.mensaje{text-align: center; color: #BDBDBD}
+.mensaje1{text-align: center; color: #BDBDBD; padding-top: 10px; padding-bottom: 10px;}
+.factura_añadida{background-color: white; border-radius: 10px 10px 10px 10px; border: 5px solid #BDBDBD; margin-top: 5px;}
+.botones{padding-left: 30px; margin-bottom: 30px;}
+.botones_cp{margin-top: 8px; margin-left: 2px;}
+input[id^='cuentasPersonales'], input[id^='codigosPostales']{font-size: 12px;}
+div[id^='cuentasPersonales_datosTelefonicos'] div{margin-left: 10px; margin-right: 20px;}
+input[id^='codigosPostales']{margin-top:10px; margin-bottom:5px; height: 35px;}
+.imagen_ajax1{padding-top: 10px;}
+#controlcp, #controlcpers{padding-top: 5px;}
+.imagen_ajax2{padding-top: 110px; padding-left: 170px}
+h5.Nuevo_cp{padding-left: 120px; color: #B40404;}
+ul{list-style: none;}
+#no_agregar_tfo, #no_agregar_vehiculo{color: #B40404; padding-left: 20px; padding-top: 10px;}
+#RebuTerceros_numeroFactura, label[for="RebuTerceros_fechaFactura"], #RebuTerceros_fechaFactura{margin-top: 10px;}
+#ComprasRG_numeroFactura, label[for="ComprasRG_fechaFactura"], #ComprasRG_fechaFactura{margin-top: 10px;}
+#GastosFacturas_numeroFactura, label[for="GastosFacturas_fechaFactura"], #GastosFacturas_fechaFactura{margin-top: 10px;}
+#RebuAutoFacturas_numeroFactura, label[for="RebuAutoFacturas_fechaFactura"], #RebuAutoFacturas_fechaFactura{margin-top: 10px;}
+#RebuTerceros_numeroFactura, #ComprasRG_numeroFactura, #RebuAutoFacturas_numeroFactura, #GastosFacturas_numeroFactura{margin-bottom: 10px; width: 80%;}
+#RebuTerceros_cuentaPersonal, #ComprasRG_cuentaPersonal, #RebuAutoFacturas_cuentaPersonal, #GastosFacturas_cuentaPersonal{width: 80%;}
+label[for="RebuTerceros_fechaFactura"], label[for="ComprasRG_fechaFactura"], label[for="RebuAutoFacturas_fechaFactura"], label[for="GastosFacturas_fechaFactura"]{margin-right: 10px; color:#736A6A;}
+#Nuevo_proveedor{margin-left: 10px;}
+input[id^='RebuTerceros_vehiculosREBUTerceros'], input[id^='ComprasRG_comprasRGVehiculos']{width: 100%; font-size: 12px;}
+div[id^='RebuTerceros_vehiculosREBUTerceros'] div, div[id^='ComprasRG_comprasRGVehiculos'] div{margin-right: 15px;}
+input[id$="importe"]{font-size: 12px; font-weight: 500; color: #112C9F;}
+.total{color: #112C9F; margin-left: 20px; padding-bottom: 25px;}
+.total h5{font-size: 1.2em; color: #112C9F}
+#total_Factura{font-size: 1.6em; width: 70%; margin-left: 10px; padding-left: 10px; margin-right: 10px;}
+#tabla_diario thead tr th.celda, #tabla_diario tbody tr td.celda{padding-right: 10px;}
+#contenedor_diario{max-height: 280px; overflow: auto;}
+                                                                                                        

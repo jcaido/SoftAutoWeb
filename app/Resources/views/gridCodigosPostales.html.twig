@@ -1,0 +1,62 @@
+<table id="tabla_codigosPostales" class="hover row-border compact">
+    <thead>
+        <tr>
+            <th>C.P.</th>
+            <th>localidad</th>
+            <th>Provincia</th>
+            <th>Pais</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for codigoPostal in codigosPostales %}
+            <tr>
+                <td>{{ codigoPostal.cp }}</td>
+                <td>{{ codigoPostal.localidad }}</td>
+                <td>{{ codigoPostal.provincia }}</td>
+                <td>{{ codigoPostal.pais }}</td>
+            </tr>    
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        
+        $('#tabla_codigosPostales tr').mouseover(function(){
+            $(this).css('cursor', 'pointer');   
+        });
+        
+        $('#tabla_codigosPostales tbody').on('dblclick', 'tr', function() {
+            var codigoPostal =$(this).find('td').eq(0).html();
+            var localidad =$(this).find('td').eq(1).html();
+            var provincia =$(this).find('td').eq(2).html();
+            var pais = $(this).find('td').eq(3).html();
+            $('#cuentasPersonales_cp').val(codigoPostal);
+            if ($('div#cp').children().length == 0) {
+                var localidad = '<div class="row"><div class="col-xs-12" id="localidad"><strong>'+localidad+'</strong></div></div>'
+                var provincia = '<div class="row"><div class="col-xs-12" id="provincia"><strong>'+provincia+" .- "+pais+'</strong></div></div>'
+                $('#cp').append(localidad).append(provincia);
+            }else{
+                $('#localidad > strong').empty();
+                $('#provincia > strong').empty();
+                $('#localidad > strong').html(localidad);
+                $('#provincia > strong').html(provincia+" .- "+pais);
+            }
+        });
+        
+    });
+    
+</script>
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

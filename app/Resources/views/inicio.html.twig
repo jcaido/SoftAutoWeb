@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid altura fondo">
+        <div class="row altura">
+            <div class="col-xs-9 portada altura">
+                <h1 class="text-center textoPortada"> SoftAutoWeb</h1>    
+            </div>
+            <div class="col-xs-3 lateral altura">
+                <div class="row login">
+                    <div class="col-xs-12 login">
+                        <div class="row">
+                            <div class="col-xs-12 margin_titulo">
+                                <h3>Acceso:</h3>
+                            </div>
+                        </div>
+                        <form class="form-horizontal" role="form" action="{{ path('usuario_login_check') }}" method="post">
+                            <div class="row">
+                                <div class="col-xs-12 margin_input">
+                                    <input class="form-control" id="login_user" type="text" placeholder="Usuario" name="_username" value="{{ last_username|default('') }}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 margin_input">
+                                    <input class="form-control" id="login_pass" type="password" placeholder="Contraseña" name="_password" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 margin-submit">
+                                    <input type="submit" class="btn btn-default btn-lg" value="Entrar" />
+                                </div>
+                            </div>      
+                        </form>
+                    </div>    
+                </div>
+            
+                <a href="{{ path('insertarCodigosPostales') }}">Insertar Códigos Postales</a>
+                <a href="{{ path('insertarCuentasPersonales') }}">Insertar Cuentas Personales</a>
+    
+            </div>        
+        </div>
+    </div>
+{% endblock %}

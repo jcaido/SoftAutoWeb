@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table id="tabla_prueba">
+        <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Nif/Cif</th>
+                <th>Nº Factura</th>
+                <th>Base Imponible</th>
+                <th>Tipo Iva</th>
+                <th>Cuota Iva</th>
+                <th>Total Factura</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura in facturas %}
+                <tr>
+                    <td>{{ factura.referencia }}</td>
+                    <td>{{ factura.fecha |date("d/m/Y") }}</td>
+                    <td>{{ factura.nombre ~ " " ~ factura.primer_apellido ~ " " ~ factura.segundo_apellido ~ " " ~ factura.denominacion_social }}</td>
+                    <td>{{ factura.nif_cif }}</td>
+                    <td>{{ factura.numero_factura }}</td>
+                    <td>{{ factura.base }}</td>
+                    <td>{{ factura.porc ~ "%"}}</td>
+                    <td>{{ (factura.base * factura.porc)/100 }}</td>
+                    <td>{{ factura.base + (factura.base * factura.porc)/100 }}</td>
+                </tr>    
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>********************************************************************************</div>
+    
+    {% for tipo in tipos %}
+        {% set baseTotal = 0  %}
+        {% for factura in facturas %}
+            {% if (factura.porc ==  tipo) %}
+                {% set baseTotal = baseTotal + factura.base %}
+            {% endif %}
+        {% endfor %}
+        <div class="row">
+            <div class="col-xs-3">
+                <p>{{ "TOTAL BASE IMPONIBLE AL " ~ tipo ~ "% = " ~ baseTotal  }}</p>
+            </div>
+            <div class="col-xs-3">
+                <p>{{ "TOTAL CUOTA AL " ~ tipo ~ "% = " ~ (baseTotal * tipo)/100 }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    
+{% endblock %}
+
+{% block javascripts %}
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#tabla_prueba').DataTable({
+                        paging: false,
+                        scrollY: 350,
+                        language: {
+                            processing:     "Procesando...",
+                            search: "Buscar:",
+                            lengthMenu: "Mostrar _MENU_ registros",
+                            info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                            infoPostFix: "",
+                            loadingRecords: "Cargando...",
+                            zeroRecords: "No se encontraron resultados",
+                            emptyTable: "Ningún dato disponible en esta tabla",
+                            paginate: {
+                                first: "Primero",
+                                previous: "Anterior",
+                                next: "Siguiente",
+                                last: "Último"
+                            },
+                            aria: {
+                                sortAscending: "Activar para ordenar la columna de manera ascendente",
+                                sortDescending: "Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+                    })    
+        });    
+    </script>
+    
+{% endblock %}
+
+
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

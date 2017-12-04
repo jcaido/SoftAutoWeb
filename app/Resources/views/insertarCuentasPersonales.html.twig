@@ -1,0 +1,337 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="encabezado">
+        <strong>Insertar cuentas personales</strong>
+    </div>
+    <div class="container-fluid fondo">     
+        <div class="row fuente">
+            <form id ="formcpersonales" action="" method="POST" role="form">
+                <div class="col-xs-8">    
+                    {{ form_start(formulario) }}
+                    <div class="row">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border dg">Datos generales</legend>
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12 borde">
+                                        {{ form_row(formulario.cliente) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.nombre, { 'attr': {'tabindex': '1'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.primerApellido, { 'attr': {'tabindex': '2'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.segundoApellido, { 'attr': {'tabindex': '3'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12 borde">
+                                        {{ form_row(formulario.proveedor) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.denominacionSocial, { 'attr': {'tabindex': '8'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.nifCif, { 'attr': {'tabindex': '4'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.email, {'attr': {'tabindex': '5'} }) }}
+                                    </div>
+                                </div>     
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12 borde">
+                                        {{ form_row(formulario.personaFisica) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.direccion, { 'attr': {'tabindex': '6'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(formulario.cp, { 'attr': {'tabindex': '7'} }) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12" id="cp">
+                                        
+                                    </div>
+                                </div>        
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border lopd">LOPD <a id="informacion_Lopd" href="#"><img src="/images/informacion.png" height="16" width="16"/></a></legend>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12 bordeatdp">
+                                        {{ form_row(formulario.atdp) }}
+                                    </div>
+                                </div>
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border Rdp">Rectificación de datos personales</legend>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.rdp) }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.fechaRdp) }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.rectccd) }}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12 bordeatdp">
+                                        {{ form_row(formulario.acdp) }}
+                                    </div>
+                                </div>
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border Radp">Revocación autorización de datos personales</legend>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.rcdp) }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.fechaRcdp) }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.revccd) }}
+                                        </div>
+                                    </div>
+                                </fieldset>       
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="row">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border lsi">LSI <a id="informacion_Lsi" href="#"><img src="/images/informacion.png" height="16" width="16"/></a></legend>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12 bordeatdp">
+                                        {{ form_row(formulario.aecc) }}
+                                    </div>
+                                </div>
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border Ccp">Canales de comunicación prohibidos</legend>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpLlt) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpMm) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpRs) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpVa) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpCp) }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpEmail)}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    {{ form_row(formulario.ccpFax) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>        
+                            </div>
+                            <div class="col-xs-6 bajar">
+                                <fieldset class="scheduler-border">
+                                    <legend class="scheduler-border Racc">Revocación autorización envío com. comerciales</legend>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.racc) }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.fechaRacc) }}        
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{ form_row(formulario.racd) }}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border Dt">Datos telefónicos <a id="add_datosTelefonicos" href="#"><img src="/images/add.png" height="16" width="16"/></a></legend>
+                        <div class="row">
+                            <div class="col-xs-12 datosTelefonicos_min" data-prototype="{{ form_widget(formulario.datosTelefonicos.vars.prototype)|e }}">            
+                                <img src="/images/Telefono.png" height="100" width="100"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                        <div class="row">
+                            <div class="col-xs-2 botones">
+                                <input id="cuentasPersonales_aceptar" type=image src="/images/aceptar1.png" width="30" height="30">
+                                                                   {# Al no utilizar form_end(), ponemos el submit y el token (proteccion csrf) por separado #}
+                                {{form_widget(formulario._token)}} {# Si utilizamos form_end() nos pintaria el campo datos telefonicos, que no queremos #}
+                            </div>
+                            <div class="col-xs-2">
+                                <div style="display:inline-block">
+                                    <a href="{{ path('REBUTerceros') }}"><img src="/images/salir1.png" height="30" width="30"/></a>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_errors(formulario.nifCif) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{ form_errors(formulario.email) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </form>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border Cp">Códigos postales</legend>
+                        <div class="CodigosPostales_min">
+                            <div class="row">
+                                <div class="col-xs-12" id="codigosPostales">
+                            
+                                </div>
+                            </div>
+                        </div>    
+                    </fieldset>    
+                </div>      
+        </div>
+    </div>        
+{% endblock %}
+
+{% block javascripts %}
+    <script type= "text/javascript">
+        $(document).ready(function() {
+            
+            //Colocar inline boton Salir
+            $('#cuentasPersonales_aceptar').parent().css('display', 'inline-block');
+            
+            //Funcionalidad para los sub-formularios datos telefonicos
+            SubFormDatosTelefonicos();
+            
+            
+            //Foco para el campo Nombre
+            $('#cuentasPersonales_nombre').focus();
+            
+            
+            //Operatividad para el checkbox Persona Fisica
+            checkboxPersonaFisica();
+            
+            
+            //Funcionalidad para el campo Código Postal
+            campoCodigoPostal("{{ path('numeroCPs') }}", "{{ path('buscarCP') }}", "{{ path('insertarCodigosPostalesAjax') }}")
+            
+            
+            //Tabular con la tecla intro
+            tabulacionConIntro('input[id^="cuentasPersonales"]');
+            
+   
+            //Activar los datepickers
+            activarDataPickers('#cuentasPersonales_fechaRdp');
+            activarDataPickers('#cuentasPersonales_fechaRcdp');
+            activarDataPickers('#cuentasPersonales_fechaRacc');
+            
+            
+            // Operatividad checkbox LOPD y LSI
+            checkboxLOPD_LSI('#cuentasPersonales_rdp', '#cuentasPersonales_rcdp', '#cuentasPersonales_racc', '#cuentasPersonales_fechaRdp', '#cuentasPersonales_fechaRcdp', '#cuentasPersonales_fechaRacc');
+            
+            
+            //Insertar la tabla Codigos postales via Ajax
+            insertarTablaCodigosPostales("{{path('grid_codigosPostales')}}", '#tabla_codigosPostales');
+            
+            
+            //dialogos para informacion legal LOPD/LSI
+            texto = "AVISO LEGAL: Este programa informático es sólo una herramienta técnica que usted como usuario autorizado"+
+                         " " +"podrá utilizar o no, según su criterio.En todo caso, le informamos que cualquier tratamiento de datos"+
+                         " " +"de carácter personal deberá realizarse conforme a lo establecido en la Ley 15/1999 de Protección"+
+                         " " +"de Datos de Carácter Personal, el Real Decreto 1720/2007 que aprueba el Reglamento de medidas de"+
+                         " " +"seguridad de los ficheros automatizados que contengan datos de carácter personal, y demás legislación"+
+                         " " +"complementaria. LA MERA UTILIZACIÓN SIN MÁS DE LOS CAMPOS QUE APARECEN ABAJO, NO SUPONEN EL"+
+                         " " +"CUMPLIMIENTO DE LA NORMATIVA ANTERIORMENTE CITADA, por lo que usted deberá adoptar las medidas"+
+                         " " +"necesarias para que la utilización de estos campos se realice ofreciendo todas las garantías y"+
+                         " " +"cumpliendo con todas las obligaciones que exige la legislación vigente en esta materia. TANTO EL"+
+                         " " +"TITULAR COMO EL PROVEEDOR DE ESTE PROGRAMA INFORMÁTICO NO SERÁN RESPONSABLES EN NINGÚN CASO DE LA"+
+                         " " +"UTILIZACIÓN ILEGAL QUE USTED COMO USUARIO LICENCIATARIO PUEDA LLEGAR A HACER DE ESTA HERRAMIENTA"+
+                         " " +"TÉCNICA.";
+            texto1 = "AVISO LEGAL: Este programa informático es sólo una herramienta técnica que usted como usuario autorizado"+
+                         " " +"podrá utilizar o no, según su criterio. En todo caso, le informamos de que además de la legislación"+
+                         " " +"que regula el tratamiento de datos de carácter personal, para el envío de comunicaciones comerciales"+
+                         " " +"usted deberá cumplir con lo establecido en la legislación existente en esta materia, entre otras"+
+                         " " +"la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico, Ley 32/2003"+
+                         " " +"General de Telecomunicaciones, Ley 34/1998 General de Publicidad y demás legislación complementaria."+
+                         " " +"LA MERA UTILIZACIÓN SIN MÁS DE LOS CAMPOS QUE APARECEN ABAJO NO SUPONEN EL CUMPLIMIENTO DE LA NORMATIVA"+
+                         " " +"ANTERIORMENTE CITADA, por lo que usted deberá adoptar las medidas necesarias para que la utilización"+
+                         " " +"de estos campos se realice ofreciendo todas las garantías y cumpliendo con todas las obligaciones"+
+                         " " +"que exige la legislación vigente en esta materia. TANTO EL TITULAR COMO EL PROVEEDOR DE ESTE PROGRAMA"+
+                         " " +"INFORMÁTICO NO SERÁN RESPONSABLES EN NINGÚN CASO DE LA UTILIZACIÓN ILEGAL QUE USTED COMO USUARIO"+
+                         " " +"LICENCIATARIO PUEDA LLEGAR A HACER DE ESTA HERRAMIENTA TÉCNICA.";
+                         
+            dialogosLOPD_LSI("#informacion_Lopd", texto);
+            dialogosLOPD_LSI("#informacion_Lsi", texto1);
+               
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AUTOFACTURA REBU</title>
+        <link rel="stylesheet" type="text/css" media="all" href="{{ pathToWeb }}/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="{{ pathToWeb }}/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="{{ pathToWeb }}/css/style.css" />
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <strong>MAEXCAR CORDOBA,S.L.</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        AVDA. DE CORDOBA, S/N
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        14.920 .- AGUILAR DE LA FRONTERA (CÓRDOBA)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        B14961114
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ factura.cuentaPersonal.nombre ~ " " ~ factura.cuentaPersonal.primerApellido ~ " " ~ factura.cuentaPersonal.segundoApellido }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ factura.cuentaPersonal.direccion }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ factura.cuentaPersonal.cp.cp ~ " .- " ~ factura.cuentaPersonal.cp.localidad ~ " (" ~ factura.cuentaPersonal.cp.provincia ~ ")" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{ factura.cuentaPersonal.nifCif }}
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ factura.nAutoFactura }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {{ factura.fechaFactura |date("d-m-Y") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                COMPRA {{factura.marca ~ " " ~ factura.modelo ~ " " ~ factura.matricula}}
+            </div>
+            <div class="col-xs-6">
+                {{ factura.importe |number_format(2, ',', '.') ~ " €" }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                BASE IMPONIBLE: {{ factura.importe |number_format(2, ',', '.') ~ " €" }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                IVA: 0,00 €
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                TOTAL FACTURA: {{ factura.importe |number_format(2, ',', '.') ~ " €" }}
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

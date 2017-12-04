@@ -1,0 +1,50 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ */
+
+class REBUTerceros
+{
+    /**
+     * @var int
+     * 
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+    
+    /**
+     * @var date
+     * 
+     * @ORM\Column(type="date")
+     */
+    protected $fechaFactura;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $numeroFactura;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CuentasPersonales")
+     */
+    protected $cuentaPersonal;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\VehiculosREBUTerceros", mappedBy="RebuTerceros", cascade={"persist"})
+     */
+    protected $vehiculosREBUTerceros;
+    
+}    
+   
+

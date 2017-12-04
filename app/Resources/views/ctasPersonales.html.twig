@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-12 encabezado margenAjax">
+        <h5>Cuentas Personales</h5>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table id="tabla_ctasPersonales" class="hover row-border compact">
+            <thead>
+                <tr>
+                    <th>cuenta</th>
+                    <th>Nombre</th>
+                    <th>Ape.1</th>
+                    <th>Ape.2</th>
+                    <th>Den.Social</th>
+                    <th>NIF/CIF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ctaPersonal in cPersonales %}
+                    <tr>
+                        <td>{{ ctaPersonal.ncuentaPersonal }}</td>
+                        <td>{{ ctaPersonal.nombre }}</td>
+                        <td>{{ ctaPersonal.primerApellido }}</td>
+                        <td>{{ ctaPersonal.segundoApellido }}</td>
+                        <td>{{ ctaPersonal.denominacionSocial }}</td>
+                        <td>{{ ctaPersonal.nifCif }}</td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+    })    
+</script>
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

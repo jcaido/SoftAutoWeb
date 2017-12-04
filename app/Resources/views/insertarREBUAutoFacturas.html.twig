@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="encabezado">
+        <strong>Compras con auto-factura en Régimen de Bienes Usados</strong>
+    </div>
+    <div class="container-fluid altura fondo">
+        <div class="row fuente1">
+            <div class="col-xs-7">
+                <form id="formREBUAutoFacturas" action="" method="POST" role="form">
+                    {{form_start(formulario)}}
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border dfREBUAutoFacturas">Datos de la Factura</legend>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div style="display:inline-block">
+                                            {{form_widget(formulario.cuentaPersonal)}}
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <a href="#" id="Buscar_proveedor"><img src="/images/buscar.png" height="24" width="24"/></a>
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <a href="{{ path('insertarCuentasPersonales') }}" id="Nuevo_proveedor"><img src="/images/add1.png" height="24" width="24"/></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{form_row(formulario.fechaFactura)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12" id="cpers">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                    </fieldset>
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border Vehiculos">Vehículo</legend>
+                        <div class="row">
+                            <div class="col-xs-12" id="Vehiculo">
+                                {{form_row(formulario.marca)}}
+                                {{form_row(formulario.modelo)}}
+                                {{form_row(formulario.matricula)}}
+                                {{form_row(formulario.importe)}}
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-xs-7 total">
+                            <div style="display:inline-block">
+                                <h5><strong>TOTAL FACTURA:</strong></h5>
+                            </div>
+                            <div style="display:inline-block">
+                                <input id="total_Factura" disabled="disabled">€
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                {% for flash_message in app.session.flashbag.get('info') %}
+                                    <div class="xs-col-12 factura_añadida">    
+                                        <div class="row">    
+                                            <div class="col-xs-12 mensaje">
+                                                <strong>FACTURA AÑADIDA</strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 mensaje">
+                                                <strong>{{ flash_message }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% for flash_message in app.session.flashbag.get('notice') %}
+                                    <div class="xs-col-12 factura_añadida"> 
+                                        <div class="row">    
+                                            <div class="col-xs-12 mensaje1">
+                                                <strong>{{ flash_message }}</strong>
+                                            </div>
+                                        </div>   
+                                    </div>    
+                                {% endfor %}
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <input id="RebuAutoFacturas_aceptar" type=image src="/images/aceptar1.png" width="30" height="30">
+                                {# Al no utilizar form_end(), ponemos el submit y el token (proteccion csrf) por separado #}
+                            {{form_widget(formulario._token)}} {# Si utilizamos form_end() nos pintaria el campo datos telefonicos, que no queremos #}
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="{{ path('compraVenta') }}"><img src="/images/salir1.png" height="30" width="30"/></a>
+                            <a href="{{ path('Prueba') }}">Prueba</a>
+                        </div>
+                    </div>  
+                </form>
+            </div>
+            <div class="col-xs-5">    
+                <div class="row">
+                    <div class="col-xs-12" id="grid1">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" id="grid2">
+                        
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock %}
+
+{% block javascripts %}
+    
+    <script type="text/javascript">
+        
+        $(document).ready(function() {
+           
+            //Activar DataTables al hacer click en buscar proveedor
+            buscarProveedor("{{path('grid_proveedores')}}", "{{path('grid_cuentasPersonales')}}", "{{path('buscarCtaPers')}}", "{{path('aProveedor')}}", "{{path('grid_proveedores')}}", '#RebuAutoFacturas_cuentaPersonal');
+            
+            
+            //Activar los datepickers
+            activarDataPickers('#RebuAutoFacturas_fechaFactura');
+            asignarFechaActual('#RebuAutoFacturas_fechaFactura');
+           
+            
+            //Foco para el campo Nº de factura
+            $('#RebuAutoFacturas_numeroFactura').focus();
+            
+            
+            //Funcionalidad para el campo Cuenta Personal
+            $('#RebuAutoFacturas_aceptar').attr('disabled', 'disabled');
+            campoCuentaPersonal('#RebuAutoFacturas_cuentaPersonal', "{{ path('numeroCPers') }}", "{{ path('buscarCPers') }}", 'div#Vehiculo input', '#RebuAutoFacturas_aceptar');
+            
+            
+            //Deshabilitar submit si los campos de "Vehiculo" están vacíos
+            pulsarTeclaInputSubformularioVehiculos('div#Vehiculo input', '#RebuAutoFacturas_aceptar')
+            
+           
+            //Total Factura
+            totalRebuAutoFacturas();
+           
+           
+            //Formato para el campo importe
+            $('input[id$="importe"]').mask("#.##0,00", {reverse: true});
+            
+            
+            //Formatear importes antes de enviarlos
+            formatearImportes('#formREBUAutoFacturas');
+            
+            
+            //Insertar la tabla Facturas de Terceros en REBU
+            insertarTablaFacturas("{{path('grid_facturasREBUAutoFacturas')}}", '#tabla_facturasREBUAutoFaturas');
+            
+            
+            //Insertar la tabla Diario
+            insertarDiarioGeneral("{{path('grid_diario')}}");
+            
+            
+            //Funcionalidad para el campo Fecha Factura
+            campoFechaFactura('#RebuAutoFacturas_fechaFactura', "{{ path('comprobarEjercicio') }}", '#RebuAutoFacturas_aceptar');
+            
+            
+        }); 
+
+    </script>
+
+{% endblock %}
+
+
+               
+            
+
+     
+        
+     
+
+
+
+
+

@@ -1,0 +1,75 @@
+<div class="row">
+    <div id="grid_diario" class="col-xs-12" style="background-color:rgb(219,221,212);">
+        <div class="row">
+            <div class="col-xs-12 encabezado">
+                <h5>DIARIO DE CONTABILIDAD</h5>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col-xs-12" id="contenedor_diario">
+                <table id="tabla_diario">
+                    <thead>
+                        <tr>
+                            <th class="celda">Ref.</th>
+                            <th class="celda">Fecha</th>
+                            <th class="celda">C.Cont.</th>
+                            <th class="celda">C.Pers.</th>
+                            <th class="celda">Concepto</th>
+                            <th class="celda">Debe</th>
+                            <th>Haber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for asiento in asientos %}
+                                <tr>
+                                    <td class="celda">{{ asiento.referencia }}</td>
+                                    <td class="celda">{{ asiento.fechaAsiento |date("d/m/Y") }}</td>
+                                    <td>
+                                        {% for apunte in asiento.apuntes %}
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="celda">{{ apunte.cuentaContable }}</td>
+                                                <td class="celda">{{ apunte.cuentaPersonal }}</td>
+                                                <td class="celda">{{ apunte.concepto }}</td>
+                                                {% if (apunte.Debe == 1) %}
+                                                    <td class="celda">{{ apunte.importe }}</td>
+                                                    <td></td>
+                                                {% else %}
+                                                    <td></td>
+                                                    <td class="celda">{{ apunte.importe }}</td>
+                                                {% endif %} 
+                                            </tr>
+                                        {% endfor %}
+                                    </td>    
+                                </tr>    
+                            {% endfor %}
+                    </tbody>   
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        
+    });
+    
+</script>
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

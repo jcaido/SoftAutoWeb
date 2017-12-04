@@ -1,0 +1,20 @@
+{% if (cuentasPersonales == 0) %}
+    <div id="controlcpers"><strong>El proveedor no existe</strong></div>
+{% else %}
+    <div class="row">
+        <div class="col-xs-12" id="nombre">
+            <strong>{{nombre ~ " " ~ primerApellido ~ " " ~ segundoApellido}} </strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" id="denominacionSocial">
+            <strong>{{denominacionSocial}}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" id="nifCif">
+            <strong>{{nifCif}}</strong>
+        </div>
+    </div>
+{% endif %}
+

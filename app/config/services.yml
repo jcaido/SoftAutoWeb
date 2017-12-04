@@ -1,0 +1,14 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    #service_name:
+    #    class: AppBundle\Directory\ClassName
+    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    campo_cuentacontable.type.cuenta_contable:
+        class: AppBundle\Form\CuentaContableType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+                - { name:     form.type, alias: cuenta_contable }

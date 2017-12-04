@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SOFT-AUTO-WEB</title>
+        <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/cwdialog.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/jquery.dataTables.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/foundation-datepicker.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/alertify.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}" type="text/css" media="all" />
+        <script src="{{ asset('/js/jquery-3.2.1.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/buscarProveedor.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/activarDataPickers.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/formatearImportes.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/insertarTablaFacturas.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/insertarDiarioGeneral.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/campoCuentaPersonal.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/campoFechaFactura.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/subFormVehiculos.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/insertarCuentasPersonales.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/funciones/totalRebuAutoFacturas.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/cwdialog.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/jquery.validate.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/jquery.dataTables.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('/js/foundation-datepicker.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/locales/foundation-datepicker.es.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/jquery.mask.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/alertify.js') }}" type="text/javascript"></script>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Tareas</title>
+        <script src="{{ asset('/js/jquery-3.2.1.js') }}" type="text/javascript"></script>
+    </head>
+    <body>
+        <form method="POST" {{ form_start(form) }}
+            {# reproduce únicamente los campos task: descripción #}
+            {{ form_row(form.name) }}
+
+            <h3>Productos</h3>
+            <ul class="products" data-prototype="{{ form_widget(form.products.vars.prototype)|e }}">
+                {# itera sobre cada etiqueta existente y reproduce su único campo: name #}
+                {% for producto in form.products %}
+                    <li>{{ form_row(producto.name) }}</li>
+                    <li>{{ form_row(producto.price) }}</li>
+                    <li>{{ form_row(producto.description) }}</li>
+                {% endfor %}
+            </ul>
+
+            {{ form_end(form) }}
+            {# ... #}
+        </form>
+        <script>
+            // Obtiene la ul que contiene la colección de productos
+            var collectionHolder = $('ul.products');
+            
+            // configura una enlace "Agregar un producto"
+            var $addProductLink = $('<a href="#" class="add_product_link">Agregar un producto</a>');
+            var $newLinkLi = $('<li></li>').append($addProductLink);
+            
+            $(document).ready(function() {
+                // Añade el ancla "Agregar un producto" y las etiquetas li y ul
+                collectionHolder.append($newLinkLi);
+                
+                // cuenta las entradas actuales en el formulario (p. ej. 2),
+                // la usa como índice al insertar un nuevo elemento (p. ej. 2)
+                collectionHolder.data('index', collectionHolder.find(':input').length);
+                
+                $addProductLink.on('click', function(e) {
+                    // evita crear el enlace con una "#" en la URL
+                    e.preventDefault();
+
+                    // añade un nuevo poducto form (ve el siguiente bloque de código)
+                    addProductForm(collectionHolder, $newLinkLi);
+                });
+                
+                function addProductForm(collectionHolder, $newLinkLi) {
+                    // Obtiene los datos del prototipo
+                    var prototype = collectionHolder.data('prototype');
+
+                    // Consigue el nuevo índice
+                    var index = collectionHolder.data('index');
+
+                    // Sustituye el '__name__' en el prototipo HTML para que
+                    // en su lugar sea un número basado en cuántos elementos hay
+                    var newForm = prototype.replace(/__name__/g, index);
+
+                    // Incrementa en uno el índice para el siguiente elemento
+                    collectionHolder.data('index', index + 1);
+
+                    // Muestra el formulario en la página en un elemento li,
+                    // antes del enlace 'Agregar un producto'
+                    var $newFormLi = $('<li></li>').append(newForm);
+                    $newLinkLi.before($newFormLi);
+                };
+            });
+        </script>
+    </body>
+</html>

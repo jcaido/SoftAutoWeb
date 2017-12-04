@@ -1,0 +1,15 @@
+{% if (codigoPostal == 0) %}
+    <div id="controlcp"><strong>El código postal no existe</strong></div>
+{% else %}
+    <div class="row">
+        <div class="col-xs-12" id="localidad">
+            <strong>{{localidad}}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" id="provincia">
+            <strong>{{provincia}} .- {{pais}}</strong>
+        </div>
+    </div>
+{% endif %}
+

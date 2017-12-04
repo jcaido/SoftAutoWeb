@@ -1,0 +1,63 @@
+<div class="row">
+    <div id="grid_facturasREBUTerceros" class="col-xs-12" style="background-color: rgb(219,221,212);">
+        <div class="row">
+            <div class="col-xs-12 encabezado margenAjax">
+                <h5>FACTURAS .- COMPRAS A TERCEROS EN REBU</h5>
+            </div>    
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+                <table id="tabla_facturasREBUTerceros" class="hover row-border compact">
+                    <thead>
+                        <tr>
+                            <th>Ref.</th>
+                            <th>Fecha</th>
+                            <th>Nº.Factura</th>
+                            <th>Proveedor</th>
+                            <th>Total Factura</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for factura in facturas %}
+                            <tr>
+                                <td>{{ factura.asiento.referencia }}</td>
+                                <td>{{ factura.fechaFactura |date("d/m/Y") }}</td>
+                                <td>{{ factura.numeroFactura }}</td>
+                                <td>{{ factura.cuentaPersonal.nombre ~ " "~ factura.cuentaPersonal.primerApellido ~ " " ~ factura.cuentaPersonal.segundoApellido ~ " " ~ factura.cuentaPersonal.denominacionSocial }}</td>
+                                {% set total = 0 %}
+                                {% for vehiculo in factura.vehiculosREBUTerceros %}
+                                    {% set total = total + vehiculo.importe %}    
+                                {% endfor %}
+                                <td>{{ total }}</td>
+                            </tr>    
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        
+    });
+    
+</script>
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+

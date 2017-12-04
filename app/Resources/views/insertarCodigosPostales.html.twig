@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+     <div>
+          <p>AÑADIR CÓDIGOS POSTALES</p>
+     </div>
+     <div id="codigosPostales">
+          {{ form(formulario) }}
+          {% for mensaje in app.session.flashbag.get('info') %}
+               <p class="info">{{ mensaje }}</p>
+          {% endfor %}
+     </div>  
+     
+        
+     <div>
+          <a href="{{ path('Inicio') }}">Volver</a>
+     </div>
+     
+{% endblock %}
+
+
+
+
+

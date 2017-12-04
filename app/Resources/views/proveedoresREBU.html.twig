@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-12 encabezado margenAjax">
+        <h5>Proveedores</h5>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table id="tabla_proveedores" class="hover row-border compact">
+            <thead>
+                <tr>
+                    <th>cuenta</th>
+                    <th>Nombre</th>
+                    <th>Ape.1</th>
+                    <th>Ape.2</th>
+                    <th>Den.Social</th>
+                    <th>NIF/CIF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proveedor in proveedores %}
+                    <tr>
+                        <td>{{ proveedor.ncuentaPersonal }}</td>
+                        <td>{{ proveedor.nombre }}</td>
+                        <td>{{ proveedor.primerApellido }}</td>
+                        <td>{{ proveedor.segundoApellido }}</td>
+                        <td>{{ proveedor.denominacionSocial }}</td>
+                        <td>{{ proveedor.nifCif }}</td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+    })    
+</script>
+               
+               
+          
+
+     
+        
+     
+
+
+
+
+
