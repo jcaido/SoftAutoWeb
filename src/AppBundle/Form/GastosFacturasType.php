@@ -28,7 +28,7 @@ class GastosFacturasType extends AbstractType
                     'allow_delete' => true,
                     'by_reference' => false,
             ))
-            ->add('tipoIRPF')
+            ->add('tipoIRPF', 'entity', array('class' => 'AppBundle:TiposIRPF', 'choice_value' => 'porcentaje', 'attr' => array('class' => 'form-control')))
             ->add('aceptar', 'submit')
         ;
     }

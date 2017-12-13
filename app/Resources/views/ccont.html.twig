@@ -1,0 +1,8 @@
+{% if (cuentasContables == 0) %}
+    <div id="controlccont"><strong>La cuenta contable no existe</strong></div>
+{% else %}
+    <div id="controlccont">
+        <strong>{{ "(" ~ cuenta ~ ") " ~ nombre }}</strong>
+    </div>
+{% endif %}
+

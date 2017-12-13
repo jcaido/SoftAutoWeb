@@ -12,11 +12,11 @@ class GastoGastosFacturasType extends AbstractType
     public function BuildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('retencion', 'checkbox', array('label' => 'Retención', 'required' => true))
-            ->add('ctaContable', 'cuenta_contable') //campo personalizado con transformador de datos (CuentaContableType.php)
-            ->add('concepto', 'text', array('label' => 'concepto', 'required' => true, 'attr' => array('class' => 'form-control', 'placeholder' => 'concepto', 'oninvalid' => 'this.setCustomValidity("Debe introducir el concepto")')))
-            ->add('tipoIva')
-            ->add('importe', 'money', array('label' => 'importe', 'required' => true, 'attr' => array('class' => 'form-control', 'placeholder' => 'importe', 'oninvalid' => 'this.setCustomValidity("Debe introducir el importe")')))
+            ->add('retencion', 'checkbox', array('label' => 'Retención', 'required' => false))
+            ->add('ctaContable', 'cuenta_contable', array('label' => 'Cta. Contable', 'required' => true, 'attr' => array('class' => 'form-control', 'placeholder' => 'Cta. Contable', 'oninvalid' => 'this.setCustomValidity("Debe introducir una Cuenta Contable")'))) //campo personalizado con transformador de datos (CuentaContableType.php)
+            ->add('concepto', 'text', array('label' => 'concepto', 'required' => true, 'attr' => array('class' => 'form-control', 'placeholder' => 'Concepto', 'oninvalid' => 'this.setCustomValidity("Debe introducir el concepto")')))
+            ->add('tipoIva', 'entity', array('class' => 'AppBundle:TiposIva', 'choice_value' =>'porcentaje', 'attr' => array('class' => 'form-control')))
+            ->add('importe', 'money', array('label' => 'importe', 'required' => true, 'attr' => array('class' => 'form-control', 'placeholder' => 'Importe', 'oninvalid' => 'this.setCustomValidity("Debe introducir el importe")')))
         ;
     }
     

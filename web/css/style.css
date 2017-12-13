@@ -38,6 +38,8 @@ legend.scheduler-border.dfGastosFacturas{font-size: 1.2em !important; font-weigh
 legend.scheduler-border.dfREBUAutoFacturas{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 25%; padding-left: 10px;}
 legend a{padding-left: 5px;}
 legend.scheduler-border.Vehiculos, legend.scheduler-border.Gastos{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 18%; padding-left: 10px;}
+legend.scheduler-border.Resumen_iva{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 30%; padding-left: 10px;}
+legend.scheduler-border.Resumen_irpf{font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; margin-bottom: 0; border-style: none; width: 30%; padding-left: 10px;}
 #cuentasPersonales_nombre, #cuentasPersonales_primerApellido, #cuentasPersonales_denominacionSocial, #cuentasPersonales_nifCif, #cuentasPersonales_direccion, #cuentasPersonales_cp{margin-bottom: 2px;}
 #cp{font-size: 1em; color: #B40404; text-align: center;}
 #cpers{font-size: 1em; color: #B40404; padding-top: 17px; border: 1px;}
@@ -47,12 +49,14 @@ label[for*="cuentasPersonales"]{font-size: 1.2em; color:#736A6A; padding-right: 
 label[for="cuentasPersonales_rdp"], label[for="cuentasPersonales_fechaRdp"], label[for="cuentasPersonales_rectccd"], label[for="cuentasPersonales_rcdp"], label[for="cuentasPersonales_fechaRcdp"], label[for="cuentasPersonales_revccd"]{font-size: 1em; padding-right: 10px;}
 label[for="cuentasPersonales_ccpLlt"], label[for="cuentasPersonales_ccpMm"], label[for="cuentasPersonales_ccpRs"], label[for="cuentasPersonales_ccpVa"], label[for="cuentasPersonales_ccpCp"], label[for="cuentasPersonales_ccpEmail"], label[for="cuentasPersonales_ccpFax"]{font-size: 1em; padding-right: 10px;}
 label[for="cuentasPersonales_racc"], label[for="cuentasPersonales_fechaRacc"], label[for="cuentasPersonales_racd"]{font-size: 1em; padding-right: 10px;}
+label[for$="retencion"]{font-size: 1.2em; color:#736A6A; padding-right: 5px; padding-left: 5px;}
 .bajar{padding-top: 40px;}
 .datosTelefonicos_min{height: 200px; overflow: auto;}
 #grid1, #grid2{height: 287px; font-size: 0.9em; margin-top: 10px;}
 #grid_facturasREBUTerceros, #gid_facturasComprasRG{overflow: auto;}
 .datosTelefonicos_min img{margin-top:50px; margin-left: 130px;}
-.Vehiculos_min, .Gastos_min{height: 330px; overflow: auto;}
+.Vehiculos_min{height: 330px; overflow: auto;}
+.Gastos_min{height: 320px; overflow: auto;}
 .Vehiculos_min img{margin-left:140px;}
 label[for="datosTelefonicos_radiob"]{font-size: 1.2em; color:#736A6A; padding-left: 20px; padding-top: 5px;}
 .CodigosPostales_min{min-height: 278px;}
@@ -70,21 +74,32 @@ input[id^='codigosPostales']{margin-top:10px; margin-bottom:5px; height: 35px;}
 .imagen_ajax2{padding-top: 110px; padding-left: 170px}
 h5.Nuevo_cp{padding-left: 120px; color: #B40404;}
 ul{list-style: none;}
-#no_agregar_tfo, #no_agregar_vehiculo{color: #B40404; padding-left: 20px; padding-top: 10px;}
+#no_agregar_tfo, #no_agregar_vehiculo, #no_agregar_gasto{color: #B40404; padding-left: 20px; padding-top: 10px;}
 #RebuTerceros_numeroFactura, label[for="RebuTerceros_fechaFactura"], #RebuTerceros_fechaFactura{margin-top: 10px;}
 #ComprasRG_numeroFactura, label[for="ComprasRG_fechaFactura"], #ComprasRG_fechaFactura{margin-top: 10px;}
 #GastosFacturas_numeroFactura, label[for="GastosFacturas_fechaFactura"], #GastosFacturas_fechaFactura{margin-top: 10px;}
 #RebuAutoFacturas_numeroFactura, label[for="RebuAutoFacturas_fechaFactura"], #RebuAutoFacturas_fechaFactura{margin-top: 10px;}
 #RebuTerceros_numeroFactura, #ComprasRG_numeroFactura, #RebuAutoFacturas_numeroFactura, #GastosFacturas_numeroFactura{margin-bottom: 10px; width: 80%;}
 #RebuTerceros_cuentaPersonal, #ComprasRG_cuentaPersonal, #RebuAutoFacturas_cuentaPersonal, #GastosFacturas_cuentaPersonal{width: 80%;}
+#GastosFacturas_tipoIRPF{width: 70%; margin-bottom: 10px;margin-left: 20px;}
 label[for="RebuTerceros_fechaFactura"], label[for="ComprasRG_fechaFactura"], label[for="RebuAutoFacturas_fechaFactura"], label[for="GastosFacturas_fechaFactura"]{margin-right: 10px; color:#736A6A;}
 #Nuevo_proveedor{margin-left: 10px;}
 input[id^='RebuTerceros_vehiculosREBUTerceros'], input[id^='ComprasRG_comprasRGVehiculos']{width: 100%; font-size: 12px;}
 div[id^='RebuTerceros_vehiculosREBUTerceros'] div, div[id^='ComprasRG_comprasRGVehiculos'] div{margin-right: 15px;}
 input[id$="importe"]{font-size: 12px; font-weight: 500; color: #112C9F;}
 .total{color: #112C9F; margin-left: 20px; padding-bottom: 25px;}
+.total_fac{color: #112C9F; margin-left: 10px; padding-bottom: 25px;}
 .total h5{font-size: 1.2em; color: #112C9F}
+.irpf{margin-bottom: 5px;}
 #total_Factura{font-size: 1.6em; width: 70%; margin-left: 10px; padding-left: 10px; margin-right: 10px;}
 #tabla_diario thead tr th.celda, #tabla_diario tbody tr td.celda{padding-right: 10px;}
 #contenedor_diario{max-height: 280px; overflow: auto;}
+div[id^="GastosFacturas_gastoGastosFacturas"] > div:last-child {width: 15%;}
+div[id^="GastosFacturas_gastoGastosFacturas"] > div:nth-child(2) {width: 20%;}
+div[id^="GastosFacturas_gastoGastosFacturas"] > div{margin-right: 10px;}
+.resumen_iva{margin-top: 10px; height: 150px;}
+.resumen_irpf{margin-top: 10px; height: 90px;}
+#GastosFacturas_tipoIRPF{font-size: 13px;}
+#controlccont{color: #B40404; padding-left: 30px;}
+
                                                                                                         

@@ -149,9 +149,9 @@ class GastoGastosFacturas
      * @param decimal $importe
      * @return GastoGastosFacturas
      */
-    public function setImporte()
+    public function setImporte($importe)
     {
-        $this->importe= $importe;
+        $this->importe = $importe;
         return $this;
     }
 

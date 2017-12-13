@@ -263,6 +263,26 @@ class DefaultController extends Controller
             return new Response($NcodigosPostales);
         }
     }
+
+    /**
+     * @Route("/usuario/numeroCCont/", name="numeroCcont")
+     */
+    public function numeroCcontAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $ccont = $request->request->get('ccontable');
+
+            $em = $this->getDoctrine()->getManager();
+            $cuentasContables = $em->getRepository('AppBundle:CuentasContables')->findOneBy(array(
+                'cuentaContable' => $ccont,
+            ));
+
+            $NcuentasContables = count($cuentasContables);
+
+            return new Response($NcuentasContables);
+        }
+    }
     
     /**
      * @Route("/usuario/numeroCPers/", name="numeroCPers")
@@ -397,6 +417,44 @@ class DefaultController extends Controller
             };
             
             return new Response($respuesta);
+        }
+    }
+
+    /**
+     * @Route("/usuario/buscarCCont/", name="buscarCCont")
+     */
+    public function buscarccontAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $ccont = $request->request->get('ccontable');
+            
+            $em = $this->getDoctrine()->getManager();
+            $cuentasContables = $em->getRepository('AppBundle:CuentasContables')->findOneBy(array(
+                'cuentaContable' => $ccont
+            ));
+
+            $NcuentasContables = count($cuentasContables);
+
+            if (empty($cuentasContables)) {
+
+                return $this->render('ccont.html.twig', array(
+                    'cuentasContables' => $NcuentasContables,
+                ));
+
+            } else {
+
+                $cuenta = $cuentasContables->getCuentaContable();
+                $nombreCuenta = $cuentasContables->getNombreCtaContable();
+
+                return $this->render('ccont.html.twig', array(
+                    'cuentasContables' => $NcuentasContables,
+                    'cuenta' => $cuenta,
+                    'nombre' => $nombreCuenta
+                ));
+
+            }
+
         }
     }
     
@@ -757,6 +815,108 @@ class DefaultController extends Controller
         $this->addFlash('info', 'REFERENCIA Nº.:'." ".$referencia);
     }
 
+    private function PersistirGastosFactura(GastosFacturas $gastoFactura, Asientos $asiento)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $gastoFactura->getGastoGastosFacturas();
+            
+        $em->persist($gastoFactura);
+        
+        $fecha = $gastoFactura->getFechaFactura();
+
+        $asientos = $em->getRepository('AppBundle:Asientos')->findAll();
+        if (empty($asientos)) {
+            $referencia = 100001;
+        }else{
+            $ultimoAsiento = $em->getRepository('AppBundle:Asientos')->findBy(
+                array(),
+                array('id'=>'DESC'),
+                1,
+                0
+            );
+            foreach ($ultimoAsiento as $ua) {
+                $ref = $ua->getReferencia();
+            }
+            $referencia = $ref + 1;
+        }
+
+        $ctaPersonal = $gastoFactura->getCuentaPersonal();
+        $nFactura = $gastoFactura->getNumeroFactura();
+        $gastos = $gastoFactura->getGastoGastosFacturas();
+
+        // Obtener el total de gastos
+            $totalGastos = 0;
+            foreach ($gastos as $gasto)
+            {
+                $importe = $gasto->getImporte();
+                $totalGastos = $totalGastos + $importe;
+            }
+
+        // Cálculo del importe correspondiente al IVA según los diferentes tipos de IVA
+            $tiposIva = $em->getRepository('AppBundle:TiposIva')->findAll();
+            $importeIva = 0;
+            foreach ($tiposIva as $tipoIva) {
+                $total = 0;
+                $tipo = $tipoIva->getId();
+                $porciento = $tipoIva->getPorcentaje();
+                foreach ($gastos as $gasto) {
+                    $tipo1 = $gasto->getTipoIva()->getId();
+                    if ($tipo1 == $tipo) {
+                        $total = $total + $gasto->getImporte();
+                    }
+                }
+
+                $importeIva = $importeIva +(($total * $porciento) / 100);
+            }
+
+        // Cálculo del importe total: Gastos + IVA
+            $importeTotal = $totalGastos + $importeIva;
+
+        $diario = $em->find('AppBundle:Diarios', 2);
+        $ctaContable1 = $em->find('AppBundle:CuentasContables', 7); //Acreedores
+        $ctaContable2 = $em->find('AppBundle:CuentasContables', 5); //IVA Soportado
+
+        $asiento->setFechaAsiento($fecha);
+        $asiento->setReferencia($referencia);
+        $asiento->setDiario($diario);
+
+        $apunte1 = new Apuntes();
+        $apunte1->setCuentaContable($ctaContable1);
+        $apunte1->setCuentaPersonal($ctaPersonal);
+        $apunte1->setConcepto('Factura nº. '.$nFactura);
+        $apunte1->setImporte($importeTotal);
+        $apunte1->setDebe(0);
+        $asiento->addApunte($apunte1);
+
+        $apunte2 = new Apuntes();
+        $apunte2->setCuentaContable($ctaContable2);
+        $apunte2->setConcepto('IVA SOPORTADO Factura nº. '.$nFactura);
+        $apunte2->setImporte($importeIva);
+        $apunte2->setDebe(1);
+        $asiento->addApunte($apunte2);
+
+        $i=2;
+        foreach ($gastos as $gasto)
+        {
+            $i=$i+1;
+            $apunte = 'apunte'.$i;
+            $apunte = new Apuntes();
+            $apunte->setCuentaContable($gasto->getCtaContable());
+            $apunte->setConcepto('Factura nº. '.$nFactura);
+            $apunte->setImporte($gasto->getImporte());
+            $apunte->setDebe(1);
+            $asiento->addApunte($apunte);
+        };
+
+        $gastoFactura->setAsiento($asiento);
+
+        $em->persist($asiento);
+        $em->flush(); 
+
+        $this->addFlash('info', 'REFERENCIA Nº.:'." ".$referencia);   
+    }
+
     private function PersistirEjercicio($añoFactura)
     {
         $em = $this->getDoctrine()->getManager();
@@ -844,6 +1004,41 @@ class DefaultController extends Controller
         if ($formulario->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
+
+            //Obtener el año de la factura  y obtener el ejercicio correspondiente
+                $fecha_Fact = $formulario->get('fechaFactura')->getData();
+                $fecha_Factura = $fecha_Fact->format('Y-m-d');
+                $año_Factura = substr($fecha_Factura, 0, 4);
+                $ejercicio = $em->getRepository('AppBundle:Ejercicios')->findOneBy(array(
+                    'ejercicio' => $año_Factura   
+                ));
+
+            if (empty($ejercicio)) { //Si el ejercicio no existe
+
+                //persistir elejercicio
+                $this->PersistirEjercicio($año_Factura);
+
+                //persistir la factura
+                $this->PersistirGastosFactura($gastoFactura, $asiento);
+                return $this->redirectToRoute('GastosFactura');
+
+            }else{ //Si el ejercicio existe
+
+                if ($ejercicio->getAbierto() == 0) {  //Si el ejercicio está cerrado
+
+                    $this->addFlash(
+                        'notice',
+                        '¡El ejercicio '.$año_Factura.' está cerrado!'
+                    );
+                    return $this->redirectToRoute('GastosFactura');
+
+                }else{
+
+                    //persistir la factura
+                    $this->PersistirGastosFactura($gastoFactura, $asiento);
+                    return $this->redirectToRoute('GastosFactura');  
+                }
+            }
         }
 
         return $this->render('insertarGastosFacturas.html.twig', array(
